@@ -1,0 +1,1 @@
+python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true )]"

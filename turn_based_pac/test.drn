@@ -1,0 +1,68 @@
+// Exported by storm
+// Original model type: MDP
+@type: MDP
+@parameters
+
+@reward_models
+
+@nr_states
+12
+@nr_choices
+13
+@model
+state 0 init
+//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=0	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
+	action STOP_RIGHT_RIGHT
+		1 : 0.95
+		2 : 0.05
+state 1
+//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=1	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action STRAIGHT_STRAIGHT_STRAIGHT
+		3 : 0.95
+		4 : 0.05
+state 2
+//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=1	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
+	action STOP_RIGHT_RIGHT
+		4 : 0.95
+		5 : 0.05
+state 3 "((((current_agent0_id = 2) & (current_agent1_id = 3)) & (current_agent2_id = 4)) = true)"
+//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=2	& current_agent0_id=2	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action __NOLABEL__
+		3 : 1
+state 4
+//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=2	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action LEFT_STRAIGHT_STRAIGHT
+		6 : 0.95
+		7 : 0.05
+	action STRAIGHT_STRAIGHT_STRAIGHT
+		7 : 0.05
+		8 : 0.95
+state 5
+//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=2	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
+	action STOP_RIGHT_RIGHT
+		7 : 0.95
+		9 : 0.05
+state 6 deadlock
+//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=3	& current_agent0_id=1	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action __NOLABEL__
+		6 : 1
+state 7
+//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=3	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action LEFT_RIGHT_STRAIGHT
+		10 : 1
+state 8 "((((current_agent0_id = 2) & (current_agent1_id = 3)) & (current_agent2_id = 4)) = true)"
+//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=3	& current_agent0_id=2	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+	action __NOLABEL__
+		8 : 1
+state 9
+//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=3	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
+	action STOP_RIGHT_RIGHT
+		11 : 1
+state 10
+//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& done	& time=3	& current_agent0_id=0	& current_agent0_target_id=4	& current_agent1_id=3	& current_agent1_target_id=4	& current_agent2_id=4	& current_agent2_target_id=4]
+	action NOP_RIGHT_RIGHT
+		10 : 1
+state 11
+//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& done	& time=3	& current_agent0_id=0	& current_agent0_target_id=4	& current_agent1_id=1	& current_agent1_target_id=4	& current_agent2_id=2	& current_agent2_target_id=4]
+	action STOP_RIGHT_RIGHT
+		11 : 1

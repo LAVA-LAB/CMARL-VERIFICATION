@@ -1,0 +1,101 @@
+mdp
+//AGENT1_CONFIGURATION:o1
+//AGENT2_CONFIGURATION:o2
+//observables o1, o2 endobservables
+//observable "agent_one_hear_left" = o1=1;
+//observable "agent_one_hear_right" = o1=2;
+//observable "agent_two_hear_left" = o2=1;
+//observable "agent_two_hear_right" = o2=2;
+module agents
+    o1 : [0..2];
+    // Agent 1
+    // 1 : hear left
+    // 2 : hear right
+    o2 : [0..2];
+    // Agent 2
+    // 1 : hear left
+    // 2 : hear right
+    ts : [1..2];
+    // 1 : tiger left
+    // 2 : tiger right
+    [listen_listen] (true) -> 0.85*0.85 : (o1'=(ts=1)?1:2) & (o2'=(ts=1)?1:2) 
+                + 0.85*0.15 : (o1'=(ts=1)?2:1) & (o2'=(ts=1)?1:2) 
+                + 0.85*0.15 : (o1'=(ts=1)?1:2) & (o2'=(ts=1)?2:1) 
+                + 0.15*0.15 : (o1'=(ts=1)?2:1) & (o2'=(ts=1)?2:1); 
+    [listen_openleft] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                   + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                   + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                   + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                   + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                   + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                   + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                   + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [listen_openright] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                    + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                    + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                    + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                    + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                    + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                    + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                    + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    
+    [openleft_listen] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                   + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                   + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                   + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                   + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                   + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                   + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                   + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [openleft_openleft] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                      + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                      + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                      + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                      + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                      + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                      + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                      + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [openleft_openright] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                       + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                       + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                       + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                       + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                       + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                       + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                       + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [openright_listen] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                    + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                    + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                    + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                    + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                    + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                    + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                    + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [openright_openleft] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                       + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                       + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                       + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                       + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                       + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                       + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                       + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+    [openright_openright] (true) -> 1/8 : (o1'=1) & (o2'=1) & (ts'=1)
+                        + 1/8 : (o1'=1) & (o2'=2) & (ts'=1)
+                        + 1/8 : (o1'=2) & (o2'=1) & (ts'=1)
+                        + 1/8 : (o1'=2) & (o2'=2) & (ts'=1)
+                        + 1/8 : (o1'=1) & (o2'=1) & (ts'=2)
+                        + 1/8 : (o1'=1) & (o2'=2) & (ts'=2)
+                        + 1/8 : (o1'=2) & (o2'=1) & (ts'=2)
+                        + 1/8 : (o1'=2) & (o2'=2) & (ts'=2);
+endmodule
+rewards
+    [listen_listen] (true) : 0;
+    [listen_openleft] (true) : (ts=1)?0:10;
+    [listen_openright] (true) : (ts=1)?10:0;
+    [openleft_listen] (true) : (ts=1)?0:10;
+    [openleft_openleft] (true) : (ts=1)?5:20;
+    [openleft_openright] (true) : (ts=1)?1:1;
+    [openright_listen] (true) : (ts=1)?10:0;
+    [openright_openleft] (true) : (ts=1)?1:1;
+    [openright_openright] (true) : (ts=1)?100:0;
+endrewards

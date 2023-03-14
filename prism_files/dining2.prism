@@ -1,0 +1,29 @@
+//AGENT0_CONFIGURATION:h0 h1 h1
+//AGENT1_CONFIGURATION:h1 h0 h0
+mdp
+const int MAX_HUNGER_LEVEL = 4;
+formula AGENT0_STARVED = (h0 = MAX_HUNGER_LEVEL);
+formula AGENT1_STARVED = (h1 = MAX_HUNGER_LEVEL);
+formula SOMEBODY_STARVED = (AGENT0_STARVED | AGENT1_STARVED );
+module simple_env
+done : bool init false;
+h0: [0..MAX_HUNGER_LEVEL] init 0;
+h1: [0..MAX_HUNGER_LEVEL] init 0;
+[eat_eat] !SOMEBODY_STARVED & done=false -> (done'=true);
+[eat_eat] SOMEBODY_STARVED & done=false -> (done'=true);
+[eat_think] !SOMEBODY_STARVED & done=false -> (h0' = 0) & (h1' = min(h1+1,MAX_HUNGER_LEVEL)) ;
+[eat_think] SOMEBODY_STARVED & done=false -> (done'=true);
+[think_eat] !SOMEBODY_STARVED & done=false -> (h0' = min(h0+1,MAX_HUNGER_LEVEL)) & (h1' = 0) ;
+[think_eat] SOMEBODY_STARVED & done=false -> (done'=true);
+[think_think] !SOMEBODY_STARVED & done=false -> (h0' = min(h0+1,MAX_HUNGER_LEVEL)) & (h1' = min(h1+1,MAX_HUNGER_LEVEL)) ;
+[think_think] SOMEBODY_STARVED & done=false -> (done'=true);
+endmodule
+rewards
+[eat_eat] true : 1;
+[eat_think] true : 1;
+[think_eat] true : 1;
+[think_think] true : 1;
+endrewards
+label "agent0_starved" = AGENT0_STARVED;
+label "agent1_starved" = AGENT1_STARVED;
+label "somebody_starved" = (AGENT0_STARVED | AGENT1_STARVED );

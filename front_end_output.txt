@@ -1,0 +1,4 @@
+Project ID: 1
+Run ID: wxgaks3cey5w76i370hc108d1d20yxgyrfq4q7im2n
+Property Query: Pmin=? [F IS_COLLISION = true ]
+Property Result: 0.3577806070936247
